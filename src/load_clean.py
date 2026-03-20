@@ -20,17 +20,17 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     logging.info("Cleaning data...")
     df = df.copy()
 
-    # Fix TotalCharges
+    
     df["TotalCharges"] = pd.to_numeric(df["TotalCharges"], errors="coerce")
     df["TotalCharges"] = df["TotalCharges"].fillna(df["MonthlyCharges"])
 
-    # Drop duplicates
+    
     df = df.drop_duplicates()
 
-    # Rename columns to snake_case
+    
     df.columns = [col.strip().lower().replace(" ", "_") for col in df.columns]
 
-    # Encode binary Yes/No columns to 1/0
+    
     binary_cols = [
         "churn", "partner", "dependents", "phoneservice",
         "paperlessbilling", "multiplelines", "onlinesecurity",
@@ -47,7 +47,7 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
 
     df["seniorcitizen"] = df["seniorcitizen"].astype(int)
 
-    # Derived features
+    
     df["tenure_band"] = pd.cut(
         df["tenure"],
         bins=[0, 12, 24, 36, 48, 60, 72],
