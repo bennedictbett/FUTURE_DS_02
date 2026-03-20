@@ -1,7 +1,14 @@
+# Data files
+data/raw/
+data/processed/
+*.csv
+*.xlsx
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
 *$py.class
+*.pyc
+*.pyo
 
 # C extensions
 *.so
